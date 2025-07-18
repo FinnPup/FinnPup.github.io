@@ -7,6 +7,7 @@ document.querySelector("input").addEventListener("change", () => {
   isDirty = true;
 });
 
+
 window.addEventListener("beforeunload", function (e) {
     if (isDirty) {
         const confirmationMessage = "You have unsaved changes. Are you sure you want to leave?";
@@ -73,6 +74,9 @@ function createRow() {
     for (let i = 1; i <= 5; i++) {
         const td = document.createElement('td');
         const textarea = document.createElement('textarea');
+        textarea.addEventListener("change", () => {
+            isDirty = true;
+        });
         textarea.name = `row${tableBody.rows.length + 1}col${i}`;
         textarea.setAttribute('aria-label', `Row ${tableBody.rows.length + 1} Column ${i}`);
         td.appendChild(textarea);
