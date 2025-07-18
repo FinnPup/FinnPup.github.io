@@ -1,0 +1,286 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    margin: 0;
+    font-size: large;
+    box-sizing: border-box;
+}
+
+/* Add small margins to main elements */
+h1,
+button[onclick="exportTableToPNG()"],
+#table-meta-form,
+table,
+footer {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+/* Remove extra padding from table-meta-form if present */
+#table-meta-form {
+    padding: 0;
+}
+
+input,button{
+    cursor: pointer;
+}
+
+/* Modern table styles */
+table {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Add a small margin around the table */
+@media (min-width: 0px) {
+    table {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+}
+
+th {
+    background: #f5f7fa;
+    color: #333;
+    font-weight: 600;
+    border-bottom: 2px solid #e3e7ed;
+}
+
+tr:not(:last-child) {
+    border-bottom: 1px solid #e3e7ed;
+}
+
+tr:hover {
+    background: #f0f4fa;
+}
+
+/* Modern button styles */
+button {
+    background: linear-gradient(90deg, #4f8cff 0%, #38c6ff 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(79,140,255,0.12);
+}
+
+button:hover, button:focus {
+    background: linear-gradient(90deg, #357ae8 0%, #2bb6e6 100%);
+    outline: none;
+}
+/* Column background gradient from green to red */
+th:nth-child(1), td:nth-child(1) {
+    background-color: #eafbe7; /* soft green */
+    color: #1a3c1a;
+}
+th:nth-child(2), td:nth-child(2) {
+    background-color: #f6fbe7; /* yellow-green */
+    color: #3c3c1a;
+}
+th:nth-child(3), td:nth-child(3) {
+    background-color: #fffbe7; /* soft yellow */
+    color: #3c3c1a;
+}
+th:nth-child(4), td:nth-child(4) {
+    background-color: #fbeee7; /* soft orange */
+    color: #3c271a;
+}
+th:nth-child(5), td:nth-child(5) {
+    background-color: #fbe7e7; /* soft red */
+    color: #3c1a1a;
+}
+
+/* Ensure header contrast */
+th {
+    font-weight: 700;
+    text-shadow: 0 1px 0 #fff;
+}
+
+th input {
+    font-weight: bold;
+    border: none;
+    background: transparent;
+    outline: none;
+    padding: 5px;
+    height: 30px;
+}
+
+/* Remove width from last-child selector */
+th:last-child, td:last-child {
+    text-align: center;
+}
+
+th.delete-column, td.delete-column {
+    width: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #f5f7fa;
+}
+
+/* Modern input styles for meta form */
+#table-meta-form input[type="text"] {
+    padding: 10px 14px;
+    border: 1px solid #aeb7c4;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: #f5f7fa;
+    color: #333;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(79,140,255,0.07);
+    margin-right: 8px;
+}
+
+#table-meta-form input[type="text"]:focus {
+    border-color: #4f8cff;
+    box-shadow: 0 2px 8px rgba(79,140,255,0.15);
+    outline: none;
+}
+
+/* Modern hidden style for table body inputs */
+tbody input[type="text"] {
+    padding: 8px 12px;
+    border: 1px solid #aeb7c4;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: transparent;
+    color: #333;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: none;
+    outline: none;
+    width: 90%;
+    opacity: 0.85;
+    word-break: break-word;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    display: block;         /* Ensure input takes full width */
+    max-width: 100%;        /* Prevent overflow */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+tbody input[type="text"]:focus {
+    border-color: #4f8cff;
+    box-shadow: 0 2px 8px rgba(79,140,255,0.10);
+    background: #f5f7fa;
+    opacity: 1;
+}
+
+#clear-table-btn{
+    background: linear-gradient(90deg, #e05e5e 0%, #ffb6b6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(255,111,111,0.12);
+}
+
+#save-table-btn {
+    background: linear-gradient(90deg, #4fd47a 0%, #b6ffd6 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(79,212,122,0.12);
+}
+
+#save-table-btn:hover, #save-table-btn:focus {
+    background: linear-gradient(90deg, #38b86b 0%, #8fffc2 100%);
+    outline: none;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    color: #357ae8;
+    text-align: center;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(90deg, #eafbe7 0%, #fbe7e7 100%);
+    border-radius: 8px;
+    padding: 8px 0;
+    box-shadow: 0 1px 4px rgba(79,140,255,0.07);
+}
+
+/* Make delete button smaller */
+.remove-row-btn {
+    padding: 4px 10px;
+    font-size: 0.95rem;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #e05e5e 0%, #ffb6b6 100%);
+    color: #fff;
+    border: none;
+    box-shadow: 0 1px 2px rgba(255,111,111,0.10);
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+.remove-row-btn:hover, .remove-row-btn:focus {
+    background: linear-gradient(90deg, #c0392b 0%, #ffb6b6 100%);
+    outline: none;
+}
+
+/* Style for table body textareas */
+tbody textarea {
+    padding: 8px 12px;
+    border: 1px solid #aeb7c4;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: transparent;
+    color: #333;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: none;
+    outline: none;
+    width: 90%;
+    opacity: 0.85;
+    word-break: break-word;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    display: block;
+    max-width: 100%;
+    min-height: 38px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+tbody textarea:focus {
+    border-color: #4f8cff;
+    box-shadow: 0 2px 8px rgba(79,140,255,0.10);
+    background: #f5f7fa;
+    opacity: 1;
+}
