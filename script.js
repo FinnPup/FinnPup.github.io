@@ -129,7 +129,6 @@ function exportTableToPNG() {
         ...document.querySelectorAll('button'),
         ...document.querySelectorAll('p'),
         ...document.querySelectorAll('footer'),
-        ...document.querySelectorAll('h1')
     ];
     elementsToHide.forEach(el => el.style.visibility = 'hidden');
 
