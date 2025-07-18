@@ -20,7 +20,8 @@ function saveTableToCookie() {
     const userName = document.getElementById('user-name').value || '';
 
     const tableData = { headers, rows, userName };
-    document.cookie = "consentTable=" + encodeURIComponent(JSON.stringify(tableData)) + "; path=/";
+    
+    document.cookie = "consentTable=" + encodeURIComponent(JSON.stringify(tableData)) + ";max-age=" + 60 * 60 * 24 * 365 + "; path=/";
 }
 
 // Load table data (rows and headers) from cookie
