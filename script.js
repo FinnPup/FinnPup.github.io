@@ -1,6 +1,19 @@
 const tableBody = document.getElementById('consent-table-body');
 const addRowBtn = document.getElementById('add-row-btn');
 const saveTableBtn = document.getElementById('save-table-btn');
+let isDirty = false;
+
+document.querySelector("input").addEventListener("change", () => {
+  isDirty = true;
+});
+
+window.addEventListener("beforeunload", function (e) {
+    if (isDirty) {
+        const confirmationMessage = "You have unsaved changes. Are you sure you want to leave?";
+        e.returnValue = confirmationMessage; // For most browsers
+        return confirmationMessage; // For some older browsers
+    }
+});
 
 // Save table data (rows and headers) to cookie
 function saveTableToCookie() {
@@ -22,6 +35,8 @@ function saveTableToCookie() {
     const tableData = { headers, rows, userName };
     
     document.cookie = "consentTable=" + encodeURIComponent(JSON.stringify(tableData)) + ";max-age=" + 60 * 60 * 24 * 365 + "; path=/";
+    isDirty = false; // Reset dirty flag after saving
+    alert('Data saved successfully!');
 }
 
 // Load table data (rows and headers) from cookie
