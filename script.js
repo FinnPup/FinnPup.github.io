@@ -172,9 +172,11 @@ function exportTableToPNG() {
 
             // Restore hidden elements
             elementsToHide.forEach(el => el.style.visibility = '');
-
+            
+            let filename = document.getElementById('user-name').value || 'consent';
+            
             const link = document.createElement('a');
-            link.download = 'table.png';
+            link.download = filename + '_table.png';
             link.href = canvas.toDataURL('image/png');
             link.click();
         });
